@@ -16,18 +16,18 @@ aspect ratio. As you may have imagined, the captions will be
 positioned\ldots well, in the margins. This is achieved with the help of 
 the \Package{floatrow} package.
 
+\begin{figure}[hb]
+	\includegraphics[width=0.45\textwidth]{monalisa}
+	\caption[Mona Lisa, again]{It's Mona Lisa again. \blindtext}
+	\label{normalmonalisa}
+\end{figure}
+
 Here is a picture of Mona Lisa (\cref{normalmonalisa}), as an example. 
 The captions are formatted as the margin- and the side-notes; If you 
 want to change something about captions you can use the command 
 \Command{captsetup} from the \Package{caption} package. Remember that if 
 you want to reference a figure, the label must come \emph{after} the 
 caption!
-
-\begin{figure}[hb]
-	\includegraphics[width=0.45\textwidth]{monalisa}
-	\caption[Mona Lisa, again]{It's Mona Lisa again. \blindtext}
-	\label{normalmonalisa}
-\end{figure}
 
 While the format of the caption is managed by \Package{caption}, its 
 position is handled by the \Package{floatrow} package. Achieving this 
@@ -133,7 +133,7 @@ With the environments \Environment{figure*} and \Environment{table*} you
 can insert figures which span the whole page width. For example, here 
 are a wide figure and a wide table.
 
-\begin{figure*}[h!]
+\begin{figure*}[!ht]
 	\includegraphics{seaside}
 	\caption[A wide seaside]{A wide seaside, and a wide caption.
 		Credits: By Bushra Feroz, CC BY-SA 4.0, \url{https://commons.wikimedia.org/w/index.php?curid=68724647}}
