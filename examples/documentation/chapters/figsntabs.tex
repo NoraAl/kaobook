@@ -16,7 +16,7 @@ aspect ratio. As you may have imagined, the captions will be
 positioned\ldots well, in the margins. This is achieved with the help of 
 the \Package{floatrow} package.
 
-Here is a picture of Mona Lisa (\reffig{normalmonalisa}), as an example. 
+Here is a picture of Mona Lisa (\cref{normalmonalisa}), as an example. 
 The captions are formatted as the margin- and the side-notes; If you 
 want to change something about captions you can use the command 
 \Command{captsetup} from the \Package{caption} package. Remember that if 
@@ -26,7 +26,7 @@ caption!
 \begin{figure}[hb]
 	\includegraphics[width=0.45\textwidth]{monalisa}
 	\caption[Mona Lisa, again]{It's Mona Lisa again. \blindtext}
-	\labfig{normalmonalisa}
+	\label{normalmonalisa}
 \end{figure}
 
 While the format of the caption is managed by \Package{caption}, its 
@@ -54,11 +54,11 @@ following code:
 \end{table}
 \end{lstlisting}
 
-which results in the useless \vreftab{useless}.
+which results in the useless \vcref{useless}.
 
 \begin{table}[ht]
 \caption[A useless table]{A useless table.}
-\labtab{useless}
+\label{useless}
 \begin{tabular}{ c c c c }
 	\toprule
 	col1 & col2 & col3 & col 4 \\
@@ -80,19 +80,19 @@ I don't have much else to say, so I will just insert some blind text.
 
 Marginfigures can be inserted with the environment 
 \Environment{marginfigure}. In this case, the whole picture is confined 
-to the margin and the caption is below it. \reffig{marginmonalisa} is 
+to the margin and the caption is below it. \cref{marginmonalisa} is 
 obtained with something like this:
 
 \begin{lstlisting}[caption={Another caption.}]
 \begin{marginfigure}
 	\includegraphics{monalisa}
 	\caption[The Mona Lisa]{The Mona Lisa.}
-	\labfig{marginmonalisa}
+	\label{marginmonalisa}
 \end{marginfigure}
 \end{lstlisting}
 
 There is also the \Environment{margintable} environment, of which 
-\reftab{anotheruseless} is an example. Notice how you can place the 
+\cref{anotheruseless} is an example. Notice how you can place the 
 caption above the table by just placing the \Command{caption} command 
 before beginning the \Environment{tabular} environment. Usually, figure 
 captions are below, while table captions are above. This rule is also 
@@ -102,7 +102,7 @@ the top.
 
 \begin{margintable}
 \caption[Another useless table]{Another useless table.}
-\labtab{anotheruseless}
+\label{anotheruseless}
 \raggedright
 \begin{tabular}{ c c c c }
 	\hline
@@ -179,7 +179,7 @@ instead, like so: \lstinline|\begin{figure*}[h!]|.
 
 You may have noticed the full width image at the very beginning of this
 chapter: that, however, is set up in an entirely different way, which
-you'll read about in \vrefch{layout}.
+you'll read about in \vcref{layout}.
 
 \Class{kaobook} also supports paginated tables (have a look at the 
 \Package{longtable} package). The 

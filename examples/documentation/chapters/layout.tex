@@ -1,7 +1,7 @@
 \setchapterimage[6cm]{seaside}
 \setchapterpreamble[u]{\margintoc}
 \chapter{Page Design}
-\labch{layout}
+\label{layout}
 
 \section{Headings}
 
@@ -9,7 +9,7 @@ So far, in this document I used two different styles for the chapter
 headings: one has the chapter name, a rule and, in the margin, the
 chapter number; the other has an image at the top of the page, and
 the chapter title is printed in a box (like for this chapter). There
-is one additional style, which I used only in the \nrefch{appendix};
+is one additional style, which I used only in the \ncref{appendix};
 there, the chapter title is enclosed in two horizontal rules, and
 the chapter number (or letter, in the case of the appendix) is above
 it.\sidenote[][.7cm]{To be honest, I do not think that mixing heading
@@ -39,7 +39,7 @@ the lines:
 \setchapterstyle{kao}
 \setchapterpreamble[u]{\margintoc}
 \chapter{Title of the Chapter}
-\labch{title}
+\label{title}
 \end{lstlisting}
 
 In Line 1 I choose the style for the title to be \enquote{kao}. Then, I 
@@ -58,7 +58,7 @@ I simply write:
 \setchapterimage[7cm]{path/to/image.png} % Optionally specify the height
 \setchapterpreamble[u]{\margintoc}
 \chapter{Catchy Title} % No need to set a chapter style
-\labch{catchy}
+\label{catchy}
 \end{lstlisting}
 
 If you prefer, you can also specify the style at the beginning of the 
@@ -108,7 +108,7 @@ in \Class{kaobook} there is an entry for everything: list of figures,
 list of tables, bibliographies, and even the table of contents itself. 
 Not everybody might like this, so we will provide a description of the 
 changes you need to do in order to enable or disable each of these 
-entries. In the following \reftab{tocentries}, each item corresponds to 
+entries. In the following \cref{tocentries}, each item corresponds to 
 a possible entry in the \acrshort{tocLabel}, and its description is the 
 command you need to provide to have such entry. These commands are 
 specified in the attached \href{style/style.sty}{style 
@@ -121,13 +121,13 @@ try to add their own entries.\marginnote{In a later section, we will see
 how you can define your own floating environment, and endow it with an 
 entry in the \acrshort{tocLabel}.} In such cases, you have to follow the 
 instructions specific to that package. Here, since we have talked about 
-glossaries and notations in \refch{references}, we will briefly see how
+glossaries and notations in \cref{references}, we will briefly see how
 to configure them.
 
 \begin{table}
 \footnotesize
 \caption{Commands to add a particular entry to the table of contents.}
-\labtab{tocentries}
+\label{tocentries}
 \begin{tabular}{ l@{\hspace{1mm}}l }
 	\toprule
 	Entry & Command to Activate \\
@@ -164,11 +164,11 @@ to the B5 format.
 We also support the paper sizes specified in
 \href{https://www.bod.de/hilfe/hilfe-und-service.html?cmd=SINGLE\&entryID=2494\_GER\_WSS\&eo=2\&title=welche-buchformate-gibt-es}{this
 web page} and some additional sizes requested by the users, with the 
-option names specified in \reftab{papersizes}.
+option names specified in \cref{papersizes}.
 
 \begin{margintable}[*-6]
 	\caption{Some non-standard paper sizes supported by kaobook.}
-	\labtab{papersizes}
+	\label{papersizes}
 	\begin{tabular}{ll}
 		\toprule
 		Dimension & Option name \\

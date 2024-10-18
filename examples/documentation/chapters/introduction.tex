@@ -1,6 +1,6 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Introduction}
-\labch{intro}
+\label{intro}
 
 \section{The Main Ideas}
 
@@ -43,12 +43,12 @@ provide information about how to use and change things. Let us get
 started.
 
 \section{What This Class Does}
-\labsec{does}
+\label{does}
 
 The \Class{kaobook} class focuses more about the document structure than 
 about the style. Indeed, it is a well-known \LaTeX\xspace principle that 
 structure and style should be separated as much as possible (see also 
-\vrefsec{doesnot}). This means that this class will only provide 
+\vcref{doesnot}). This means that this class will only provide 
 commands, environments and in general, the opportunity to do things, 
 which the user may or may not use. Actually, some stylistic matters are 
 embedded in the class, but the user is able to customise them with ease.
@@ -79,7 +79,7 @@ The main features are the following:
 	\item[Margin figs/tabs] A couple of useful environments is 
 	\Environment{marginfigure} and \Environment{margintable}, which, not 
 	surprisingly, allow you to put figures and tables in the margins 
-	(\cfr \reffig{marginmonalisa}).
+	(\cfr \cref{marginmonalisa}).
 	\item[Margin toc] Finally, since we have wide margins, why don't add 
 	a little table of contents in them? See \Command{margintoc} for 
 	that.
@@ -99,7 +99,7 @@ The main features are the following:
 	\includegraphics{monalisa}
 	\caption[The Mona Lisa]{The Mona Lisa.\\ 
 	\url{https://commons.wikimedia.org/wiki/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg}}
-	\labfig{marginmonalisa}
+	\label{marginmonalisa}
 \end{marginfigure}
 
 The order of the title pages, table of contents and preface can be 
@@ -108,7 +108,7 @@ based on \KOMAScript's \Class{scrbook}, therefore it inherits all the
 goodies of that.
 
 \section{What This Class Does Not Do}
-\labsec{doesnot}
+\label{doesnot}
 
 As anticipated, further customisation of the book is left to the user. 
 Indeed, every book may have sidenotes, margin figures and so on, but 
@@ -126,7 +126,7 @@ directory, which is organised as follows:
     change the default layout; some fancy environments (with coloured 
     boxes around them, floating, and/or with a counter) are predefined.
     \item[kaobiblio.sty] Where commands to print citations in the 
-    margins are defined.\sidenote{See \refch{references}.} It is the 
+    margins are defined.\sidenote{See \cref{references}.} It is the 
     \Class{kao-} analog of \Package{biblatex}.
     \item[kaorefs.sty] It contains some useful commands to manage 
     labeling and referencing, again to ensure that the same elements are 
