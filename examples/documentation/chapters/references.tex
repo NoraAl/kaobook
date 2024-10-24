@@ -179,82 +179,81 @@ of the above package to gain a full understanding of how they work.}
 
 \section{Hyperreferences}
 \label{hyprefs}
-
 \index{hyperreferences}
-Together with this class we provide a handy package to help you 
-referencing the same elements always in the same way, for consistency 
-across the book. First, you can label each element with a specific 
-command. For instance, should you want to label a chapter, you would put 
-\lstinline|\label{chapter-title}| right after the \Command{chapter} 
-directive. This is just a convenience, because \Command{labch} is
-actually just an alias to \lstinline|\label{ch:chapter-title}|, so it 
-spares you the writing of \enquote{ch:}. We defined similar commands for 
-many typically labeled elements, including:
 
-\begin{multicols}{2}
-\setlength{\columnseprule}{0pt}
-\begin{itemize}
-	\item Page: \Command{labpage}
-	\item Part: \Command{labpart}
-	\item Chapter: \Command{labch}
-	\item Section: \Command{labsec}
-	\item Figure: \Command{labfig}
-	\item Table: \Command{labtab}
-	\item Definition: \Command{labdef}
-	\item Assumption: \Command{labassum}
-	\item Theorem: \Command{labthm}
-	\item Proposition: \Command{labprop}
-	\item Lemma: \Command{lablemma}
-	\item Remark: \Command{labremark}
-	\item Example: \Command{labexample}
-	\item Exercise: \Command{labexercise}
-\end{itemize}
-\end{multicols}
+When writing, it is very common to have to refer to a particular
+figure, table, or section elsewhere in the document. We use
+hyperreferences for this, with the \Command{label}-\Command{ref}
+mechanism. There are three useful packages that can make the references
+look more like what you want: \Package{cleveref}, \Package{nameref},
+and \Package{varioref}.\sidenote{\Package{zref} is a newer and
+promising alternative, but it will not be covered here.} Of these,
+\Package{cleveref} is the most powerful, as it can automatically
+infer the type of element that you are referring to (figure, table,
+section, equation, \ldots), and add an appropriate prefix. For
+example, \Command{ref{my-figure}} becomes \enquote{Figure 1} and you
+don't have to type \enquote{Figure} yourself; \Package{cleveref}
+also takes care of capitalization and lets you change the prefixes
+globally. \Package{nameref} allows you to print the name of the section
+you are referring to, instead of just its number. For instance,
+\Command{nameref{my-section}} becomes \enquote{Title of the section}.
+Finally, \Package{varioref} adds some spice to your references by adding
+the page number and, for instance, replacing \enquote{on page 99} with
+\enquote{on the following page} whenever appropriate.
 
-Of course, we have similar commands for referencing those elements. 
-However, since the style of the reference should depend on the context, 
-we provide different commands to reference the same thing. For instance, 
-in some occasions you may want to reference the chapter by name, but 
-other times you want to reference it only by number. In general, there 
-are four reference style, which we call plain, vario, name, and full.
+In previous \Class{kaobook} versions, I introduced bespoke labelling and
+referencing commands, specific to each element. Thus, there would be
+\Command{labch} for labelling chapters, \Command{labfig} for figures,
+and so on. They were complemented by the corresponding referencing
+commands that also allowed you to choose the style of the reference: by
+title, by number, with or without page. Recently, these commands have
+been replaced by a simpler interface that achieves the same behaviour
+with just four commands, using \Package{cleveref} features.
 
-The plain style references only by number. It is accessed, for chapters, 
-with \lstinline|\cref{chapter-title}| (for other elements, the syntax 
-is analogous). Such a reference results in: \cref{references}.
+Labelling in \Class{kaobook} is no different from labelling in regular
+\LaTeX: simply use \Command{label{my-label}} right after the element
+that you want to reference. For example, this is how you may label a
+chapter:
+\begin{lstlisting}[style=kaolstplain]
+        \chapter{Introduction to calculus}
+        \label{intro-calculus}
+\end{lstlisting}
+Note that, for figures and tables, the label must always come
+\textit{after} the caption.
 
-The vario and name styles rest upon the \Package{varioref} package. 
-Their syntax is \lstinline|\vcref{chapter-title}| and 
-\lstinline|\ncref{chapter-title}|, and they result in: 
-\vcref{references}, for the vario style, and: \ncref{references}, for 
-the name style. As you can see, the page is referenced in 
-\Package{varioref} style.
+Standard \LaTeX\ defines the \Command{ref} command, which you can
+of course also use in \Class{kaobook}. However, I recommend to use
+\Command{cref} instead, as a drop-in replacement. In addition, since the
+style of the reference should depend on the context, \Class{kaobookc}
+provides three more commands to customize the reference style and
+introduce some variation. In some occasions you may want to reference
+the chapter by name, but other times you want to reference it only by
+number. In general, there are four reference style, which we call plain,
+vario, name, and full.
 
-The full style references everything. You can use it with 
-\lstinline|\fcref{chapter-title}| and it looks like this: 
+The plain style references only by number. It is accessed with
+\lstinline|\cref{my-label}| (directly from the \Package{cleveref}
+package). Such a command results in: \cref{references}.
+
+The vario and name styles rest upon the \Package{varioref}
+package. Their syntax is \lstinline|\vcref{my-label}| and
+\lstinline|\ncref{my-label}|, and they result in: \vcref{references},
+for the vario style, and: \ncref{references}, for the name style. As you
+can see, the page is referenced in \Package{varioref} style.
+
+The full style references everything: number, title, and page. You
+can use it with \lstinline|\fcref{my-label}| and it looks like this:
 \fcref{references}.
 
-Of course, all the other elements have similar commands (\eg for parts 
-you would use \lstinline|\vcref{part-title}| or something like that). 
-However, not all elements implement all the four styles. The commands 
-provided should be enough, but if you want to see what is available or 
-to add the missing ones, have a look at the 
-\href{styles/kaorefs.sty}{attached package}.
-
-In order to have access to all these features, the \Package{kaorefs} 
-should be loaded in the preamble of your document. It should be loaded 
-last, or at least after \Package{babel} (or \Package{polyglossia}) and 
-\Package{plaintheorems} (or \Package{mdftheorems}). Options can be 
-passed to it like to any other package; in particular, it is possible to 
-specify the language of the captions. For instance, if you specify 
-\enquote{italian} as an option, instead of \enquote{Chapter} it will be 
-printed \enquote{Capitolo}, the Italian analog. If you know other 
-languages, you are welcome to contribute the translations of these 
-captions! Feel free to contact the author of the class for further 
-details. 
-
-The \Package{kaorefs} package also include \Package{cleveref}, so it is 
-possible to use \Command{cref} in addition to all the previously 
-described referencing commands.
+In order to have access to these commands, the package \Package{kaorefs}
+should be loaded in the preamble of your document. It should be loaded
+last, or at least after \Package{babel} (or \Package{polyglossia}) and
+\Package{plaintheorems} (or \Package{mdftheorems}). \Package{cleveref}
+is language-aware and will change the captions based on your document's
+language, as long as you use \Package{babel} or \Package{polyglossia}.
+It can also be customized to achieve exactly the reference style that
+you want. Please refer to the \Package{cleveref} documentation to learn
+more.
 
 \section{A Final Note on Compilation}
 \label{compiling}
