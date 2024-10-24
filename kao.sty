@@ -564,8 +564,11 @@
 \setlength\columnseprule{.4pt} % Set the width of vertical rules in tables
 
 % The marginfix package prevents the margin notes to stay aligned with the main text, so it cannot be used. However, we define the \marginskip command, which is the only command we need from that package.
+\newcommand\marginskiplength[1]{%
+    \@margin@par\vspace{#1 - \baselineskip}
+}
 \newcommand\marginskip[1]{%
-	\marginpar{\@margin@par\vspace{#1 - \baselineskip}}% We subtract the \baselineskip that we have in margin pars.
+    \marginpar{\marginskiplength{#1}}% We subtract the \baselineskip that we have in margin pars.
 }
 
 \newlength{\kaomarginskipabove} % Specify the space above a marginfigure, margintable or marginlisting
@@ -577,44 +580,50 @@
 % We redefine it here because we want to use our own caption formatting.
 \RenewDocumentEnvironment{marginfigure}{o}{%
 	\FloatBarrier%
-	\marginskip{\kaomarginskipabove}%
 	\begin{lrbox}{\@sidenotes@marginfigurebox}%
 	\begin{minipage}{\marginparwidth}%
 		\captionsetup{type=figure}%
 }{%
 	\end{minipage}%
 	\end{lrbox}%
-	\marginnote[#1]{\usebox{\@sidenotes@marginfigurebox}}%
-	\marginskip{\kaomarginskipbelow}%
+	\marginnote[#1]{%
+            \marginskiplength{\kaomarginskipabove}%
+            \usebox{\@sidenotes@marginfigurebox}%
+            \marginskiplength{\kaomarginskipbelow}%
+        }%
 }
 
 % Environment to hold a margin table (from the sidenotes package)
 \RenewDocumentEnvironment{margintable}{o}{%
 	\FloatBarrier%
-	\marginskip{\kaomarginskipabove}%
 	\begin{lrbox}{\@sidenotes@margintablebox}%
 	\begin{minipage}{\marginparwidth}%
 		\captionsetup{type=table}%
 }{%
 	\end{minipage}%
 	\end{lrbox}%
-	\marginnote[#1]{\usebox{\@sidenotes@margintablebox}}%
-	\marginskip{\kaomarginskipbelow}%
+	\marginnote[#1]{%
+            \marginskiplength{\kaomarginskipabove}%
+            \usebox{\@sidenotes@margintablebox}%
+            \marginskiplength{\kaomarginskipbelow}%
+        }%
 }
 
 % Environment to hold a margin listing
 \newsavebox{\@sidenotes@marginlistingbox}%
 \NewDocumentEnvironment{marginlisting}{o}{% The optional parameter is the vertical offset
 	\FloatBarrier%
-	\marginskip{\kaomarginskipabove}%
 	\begin{lrbox}{\@sidenotes@marginlistingbox}%
 	\begin{minipage}{\marginparwidth}%
 		\captionsetup{type=lstlisting}%
 }{%
 	\end{minipage}%
 	\end{lrbox}%
-	\marginnote[#1]{\usebox{\@sidenotes@marginlistingbox}}%
-	\marginskip{\kaomarginskipbelow}%
+	\marginnote[#1]{%
+            \marginskiplength{\kaomarginskipabove}%
+            \usebox{\@sidenotes@marginlistingbox}%
+            \marginskiplength{\kaomarginskipbelow}%
+        }%
 }
 
 % Change the position of the captions
